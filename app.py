@@ -14,7 +14,7 @@ st.header("👕 아이템 조합하기")
 col1, col2 = st.columns(2)
 with col1:
         st.subheader("상의")
-        top_type = st.radio("종류", ["셔츠", "맨투맨", "반팔 티셔츠"], key = "top_type")
+        top_type = st.radio("종류", ["후드티", "셔츠", "맨투맨", "반팔 티셔츠"], key = "top_type")
         top_color = st.select_slider("색상 톤", options=["밝음", "무난함", "어두움"], key = "top_color")
 with col2:
         st.subheader("하의")
@@ -53,7 +53,7 @@ with st. expander("코디 연출 팁 영상 보기"):
 def reset_all():
         st.session_state.user_name = ""
         st.session_state.weather = "맑음"
-        st.session_state.top_type = "셔츠"
+        st.session_state.top_type = "후드티"
         st.session_state.top_color = "밝음"
         st.session_state.bottom_type = "청바지"
         st.session_state.bottom_color = "슬림"
