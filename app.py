@@ -6,21 +6,20 @@ st.title("카운터 앱")
 if "count" not in st.session_state:
     st.session_state.count = 0
 
+# 텍스트 입력창이 비어있지 않으면(아무 키나 눌려서 글자가 들어오면) 숫자 증가
+if "typing_box" in st.session_state and st.session_state.typing_box != "":
+    # 입력된 글자 수만큼 카운트를 올립니다 (연타 대응)
+    st.session_state.count += len(st.session_state.typing_box)
+    # 다음 입력을 위해 입력창을 즉시 강제로 비워버립니다
+    st.session_state.typing_box = ""
+    st.rerun()
 
-# 입력창에 글자가 바뀌거나 엔터를 누르면 숫자를 올리는 함수
-def increment():
-    st.session_state.count += 1
-    # 입력창을 다시 빈칸으로 초기화하기 위해 세션 스테이트 초기화
-    st.session_state.key_input = ""
+st.markdown("### 👇 아래 입력창을 클릭하고 아무 키나 마구 타이핑하세요! (엔터 금지)")
 
-
-st.markdown("### 👇 아래 입력창에 아무 키나 치고 [Enter]를 누르세요!")
-
-# 입력창 생성 (글자를 입력하고 엔터를 누르면 무조건 숫자가 올라감)
+# 글자가 입력되는 순간 바로 반응하는 입력창
 st.text_input(
-    "여기에 아무 키나 누르고 엔터!",
-    key="key_input",
-    on_change=increment,
+    "여기에 아무 키나 누르기",
+    key="typing_box",
     label_visibility="collapsed",
 )
 
