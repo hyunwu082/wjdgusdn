@@ -8,8 +8,8 @@ grade= st.radio("학년", ["1", "2", "3"], horizontal=True)
 점수= st.slider("점수", 0, 100, 50)
 question = st.text_area("소감", placeholder="소감입니다.")
 if st.button("확인"):
-        st.success(f")
-        st.markdown(f"{user_id} /{grade}학년 / {반}반 / {난이도}")
+        st.success(f"{user_id} /{grade}학년 / {반}반 / {난이도}")
+        st.markdown(f"점수: `{점수}`")
         st.info(f"소감: {text}")
         
        
