@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_keyboard_shortcut import shortcut
 
 st.title("카운터 앱")
 
@@ -7,17 +6,22 @@ st.title("카운터 앱")
 if "count" not in st.session_state:
     st.session_state.count = 0
 
-# 버튼 선언
-increment = st.button("증가")
 
-# 1. 마우스로 버튼을 누르거나
-# 2. 키보드로 스페이스바(space) 또는 엔터(enter)를 누르면 작동
-if increment:
+# 입력창에 글자가 바뀌거나 엔터를 누르면 숫자를 올리는 함수
+def increment():
     st.session_state.count += 1
+    # 입력창을 다시 빈칸으로 초기화하기 위해 세션 스테이트 초기화
+    st.session_state.key_input = ""
+
+
+st.markdown("### 👇 아래 입력창에 아무 키나 치고 [Enter]를 누르세요!")
+
+# 입력창 생성 (글자를 입력하고 엔터를 누르면 무조건 숫자가 올라감)
+st.text_input(
+    "여기에 아무 키나 누르고 엔터!",
+    key="key_input",
+    on_change=increment,
+    label_visibility="collapsed",
+)
 
 st.markdown(f"## 현재 숫자: `{st.session_state.count}`")
-
-# --- 키보드 단축키 지정 ---
-# 스페이스바나 엔터를 누르면 위의 'increment' 버튼이 실행됩니다.
-shortcut(key="space")
-shortcut(key="enter")
