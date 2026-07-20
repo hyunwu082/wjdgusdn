@@ -6,33 +6,32 @@ st.title("카운터 앱")
 if "count" not in st.session_state:
     st.session_state.count = 0
 
-# 버튼을 나중에 JavaScript로 클릭할 수 있도록 고유한 Key("increment_btn")를 부여합니다.
-if st.button("증가", key="increment_btn"):
+# 버튼 생성
+if st.button("증가"):
     st.session_state.count += 1
 
 st.markdown(f"## 현재 숫자: `{st.session_state.count}`")
 
-# --- 스페이스바 입력 감지를 위한 JavaScript 삽입 ---
-# 데이터가 변경되어도 포커스를 유지하고, 스페이스바를 누르면 버튼을 클릭하게 만듭니다.
+# --- 아무 키나 눌러도 버튼이 클릭되게 만드는 JavaScript ---
 st.components.v1.html(
     """
     <script>
-    // 부모 창(Streamlit 앱)의 문서를 가져옵니다.
     const doc = window.parent.document;
     
-    // 키다운 이벤트 리스너 추가
+    // 키보드 아무 키나 눌렸을 때 이벤트 발생
     doc.onkeydown = function(e) {
-        if (e.keyCode === 32 || e.key === " ") {  // 스페이스바 조건
-            e.preventDefault(); // 스페이스바를 눌렀을 때 화면이 아래로 스크롤되는 것을 방지
-            
-            # 지정한 key를 가진 버튼 요소를 찾아 클릭 이벤트를 발생시킵니다.
-            const btn = doc.querySelector("button[aria-label='증가']");
-            if (btn) {
-                btn.click();
-            }
+        // 스페이스바(Space)나 엔터(Enter)의 기본 스크롤/동작 방지
+        if (e.key === " " || e.key === "Enter") {
+            e.preventDefault();
+        }
+        
+        // '증가' 버튼을 찾아서 클릭 트리거
+        const btn = doc.querySelector("button[aria-label='증가']");
+        if (btn) {
+            btn.click();
         }
     };
     </script>
     """,
-    height=0,  # 화면에 보이지 않도록 높이를 0으로 설정
+    height=0,  # HTML 컴포넌트가 화면을 차지하지 않도록 숨김
 )
