@@ -27,7 +27,7 @@ def edit_motto():
 
 def page_motto():
     st.header("📣 1. 오늘의 과목")
-    st.info(f"과: {st.session_state.user_motto}")
+    st.info(f"과목: {st.session_state.user_motto}")
     if st.button("과목 수정하기"):
         edit_motto()
     if st.session_state.motto_updated:
