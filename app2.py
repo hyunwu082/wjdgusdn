@@ -147,6 +147,9 @@ def page_ai_notion():
             height=300,
             label_visibility="collapsed"
         )
+        if st.button("➕ 추가"):
+        st.session_state.concept_count += 1
+        st.rerun()
 pg = st.navigation([
     st.Page(page_motto, title="오늘의 개념", icon="📣"),
     st.Page(page_todo, title="오늘의 할 일", icon="✅"),
