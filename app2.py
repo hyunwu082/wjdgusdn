@@ -162,8 +162,8 @@ def page_report():
 pg = st.navigation([
     st.Page(page_motto, title="오늘의 개념", icon="📣"),
     st.Page(page_todo, title="오늘의 할 일", icon="✅"),
-    st.Page(page_report, title="", icon="📈"),
     st.Page(page_ai_coach, title="AI 코칭", icon="🧐"),
-    st.Page(page_ai_notion, title="📖 개념 정리")], position="top")
+    st.Page(page_ai_notion, title="📖 개념 정리"),
+    st.Page(page_report, title="", icon="📈")], position="top")
 st.title("🕵️개념 확인 노트🕵️")
 pg.run()
