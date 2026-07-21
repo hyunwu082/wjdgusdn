@@ -81,7 +81,7 @@ def page_report():
             st.rerun()
 
 def page_ai_coach():
-    st.header("🤖 AI 코치와 대화하기")
+    st.header("🤖 AI코칭")
     prompt = st.text_input("질문을 입력하세요")
     if st.button("보내기"):
         response = ai_client.responses.create(
@@ -94,7 +94,7 @@ pg = st.navigation([
     st.Page(page_motto, title="오늘의 다짐", icon="📣"),
     st.Page(page_todo, title="오늘의 할 일", icon="✅"),
     st.Page(page_report, title="나의 갓생 지수", icon="📈")], position="top")
-    st.Page(page_ai_coach, title="AI코", icon="🤖")
+    st.Page(page_ai_coach, title="AI코칭", icon="🤖")
 
 st.title("🌱 갓생 살기 플래너")
 pg.run()
