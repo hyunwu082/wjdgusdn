@@ -57,26 +57,6 @@ def page_todo():
                 st.write("✅ **달성!**")
     st.markdown("---")
 
-def page_report():
-    st.header("📈 3. 개념 파악 지")
-    if not st.session_state.todo_list:
-        st.write("아직 등록된 할 일이 없습니다.")
-    else:
-        total = len(st.session_state.todo_list)
-        count = 0
-        for item in st.session_state.todo_list:
-            if item[1] == True:
-                count += 1
-        progress = (count / total) * 100
-        st.metric("오늘의 달성률", f"{progress:.1f}%")
-        st.progress(progress / 100)
-        if progress == 100:
-            st.balloons()
-            st.success("모든 목표를 달성하셨습니다! 🏆")
-        if st.button("기록 전체 초기화"):
-            st.session_state.todo_list = []
-            st.rerun()
-
 def page_ai_coach():
     st.header("🧐 AI 검색창")
     if "messages" not in st.session_state:
@@ -158,6 +138,26 @@ def page_ai_notion():
     if st.button("➕ 추가"):
         st.session_state.concept_count += 1
         st.rerun()
+       
+def page_report():
+    st.header("📈 3. 학습보고서 ")
+    if not st.session_state.todo_list:
+        st.write("아직 등록된 할 일이 없습니다.")
+    else:
+        total = len(st.session_state.todo_list)
+        count = 0
+        for item in st.session_state.todo_list:
+            if item[1] == True:
+                count += 1
+        progress = (count / total) * 100
+        st.metric("오늘의 달성률", f"{progress:.1f}%")
+        st.progress(progress / 100)
+        if progress == 100:
+            st.balloons()
+            st.success("모든 목표를 달성하셨습니다! 🏆")
+        if st.button("기록 전체 초기화"):
+            st.session_state.todo_list = []
+            st.rerun()
 
 pg = st.navigation([
     st.Page(page_motto, title="오늘의 개념", icon="📣"),
