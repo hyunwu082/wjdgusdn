@@ -62,27 +62,6 @@ def page_ai_coach():
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
 
-    if prompt := st.chat_input("궁금한 개념을 입력하세요."):
-        st.session_state.messages.append(
-            {"role": "user", "content": prompt}
-        )
-
-        with st.chat_message("user"):
-            st.markdown(prompt)
-
-        response = client.chat.completions.create(
-            model="gpt-5.4-mini",
-            messages=st.session_state.messages
-        )
-
-        answer = response.choices[0].message.content
-
-        st.session_state.messages.append(
-            {"role": "assistant", "content": answer}
-        )
-
-        with st.chat_message("assistant"):
-            st.markdown(answer)
     question = st.chat_input("질문을 입력하세요")
     if question:
         st.session_state.messages.append({"role": "user", "content": question})
