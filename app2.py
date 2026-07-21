@@ -4,6 +4,8 @@ if 'todo_list' not in st.session_state:
     st.session_state.todo_list = []
 if 'user_motto' not in st.session_state:
     st.session_state.user_motto = "오늘도 화이팅!"
+if 'motto_updated' not in st.session_state:
+    st.session_state.motto_updated = False
 
 def add_todo():
     task = st.session_state.todo_input
@@ -66,3 +68,4 @@ pg = st.navigation([
     st.Page(page2, title="오늘의 할 일"),
     st.Page(page3, title="나의 갓생 지수")])
 pg.run()
+
