@@ -44,7 +44,7 @@ def page_todo():
         st.warning("모르는 개념을 입력하고 버튼을 눌러주세요!")
     
     st.markdown("---")
-      for i in range(len(st.session_state.todo_list)):
+    for i in range(len(st.session_state.todo_list)):
         col_task, col_btn, col_status = st.columns([4, 1, 1])
         with col_task:
             st.write(f"{i+1}. {st.session_state.todo_list[i][0]}")
