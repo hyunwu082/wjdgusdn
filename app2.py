@@ -58,7 +58,7 @@ def page_todo():
     st.markdown("---")
 
 def page_report():
-    st.header("📈 3. 나의 갓생 지수")
+    st.header("📈 3. 개념 파악 지")
     if not st.session_state.todo_list:
         st.write("아직 등록된 할 일이 없습니다.")
     else:
@@ -134,3 +134,17 @@ pg = st.navigation([
 
 st.title("🕵️개념 확인 노트🕵️")
 pg.run()
+
+def page_unknown_concept():
+    st.header("📚 모르는 개념")
+
+    st.text_input(
+        "개념 이름",
+        placeholder="예) 리스트 컴프리헨션"
+    )
+
+    st.text_area(
+        "AI에게 물어보고 알게 된 개념",
+        placeholder="AI에게 질문한 후 이해한 내용을 작성하세요.",
+        height=250
+    )
