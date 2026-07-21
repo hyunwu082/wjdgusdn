@@ -18,7 +18,7 @@ def add_todo():
         st.session_state.todo_input = ""
 
         progress = (count/total) * 100
-        st.metric("오늘의 달성률", f"{})
+        st.metric("오늘의 달성률", f"{progress:.if}%")
 
 @st.dialog("오늘의 다짐 수정")
 def edit_motto():
