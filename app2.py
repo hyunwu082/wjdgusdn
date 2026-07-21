@@ -81,14 +81,35 @@ def page_ai_coach():
     st.header("🧐 AI 검색창")
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            {"role": "system", "content": "너는 사용자의 할 일 목록과 달성 정도를 분석하여 조언하는 열정적인 코치야. 사용자가 더 멋진 삶을 살 수 있도록 명확한 조언과 응원해줘."}
-        ]
-        
+            { "role": "system", "content": "너는 사용자의 개념 학습을 도와주는 친절한 AI 튜터야. 이해하기 쉽게 설명하고, 예시와 함께 알려줘."
+            }]
+
     for message in st.session_state.messages:
         if message["role"] != "system":
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
-                
+
+    if prompt := st.chat_input("궁금한 개념을 입력하세요."):
+        st.session_state.messages.append(
+            {"role": "user", "content": prompt}
+        )
+
+        with st.chat_message("user"):
+            st.markdown(prompt)
+
+        response = client.chat.completions.create(
+            model="gpt-4.1-mini",
+            messages=st.session_state.messages
+        )
+
+        answer = response.choices[0].message.content
+
+        st.session_state.messages.append(
+            {"role": "assistant", "content": answer}
+        )
+
+        with st.chat_message("assistant"):
+            st.markdown(answer)
     question = st.chat_input("질문을 입력하세요")
     if question:
         st.session_state.messages.append({"role": "user", "content": question})
