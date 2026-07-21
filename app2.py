@@ -6,7 +6,7 @@ ai_client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 if 'todo_list' not in st.session_state:
     st.session_state.todo_list = []
 if 'user_motto' not in st.session_state:
-    st.session_state.user_motto = "오늘도 화이팅!"
+    st.session_state.user_motto = ""
 if 'motto_updated' not in st.session_state:
     st.session_state.motto_updated = False
 
@@ -78,7 +78,7 @@ def page_report():
             st.rerun()
 
 def page_ai_coach():
-    st.header("🧐 AI 코치와 대화하기")
+    st.header("🧐 AI 검색창")
     if "messages" not in st.session_state:
         st.session_state.messages = [
             {"role": "system", "content": "너는 사용자의 할 일 목록과 달성 정도를 분석하여 조언하는 열정적인 코치야. 사용자가 더 멋진 삶을 살 수 있도록 명확한 조언과 응원해줘."}
@@ -111,5 +111,5 @@ pg = st.navigation([
     st.Page(page_report, title="나의 갓생 지수", icon="📈"),
     st.Page(page_ai_coach, title="AI 코칭", icon="🧐")], position="top")
 
-st.title("🌱 갓생 살기 플래너")
+st.title("🕵️개념 확인 노트🕵️")
 pg.run()
