@@ -17,31 +17,31 @@ def add_todo():
         st.toast("공부할 개념이 추가되었습니다! ")
         st.session_state.todo_input = ""
 
-@st.dialog("개념 수정")
+@st.dialog("과목 선정")
 def edit_motto():
     motto = st.text_input("내가 오늘 공부할 과목을 적어주세요.")
-    if st.button("개념 저장"):
+    if st.button("과목 저장"):
         st.session_state.user_motto = motto
         st.session_state.motto_updated = True
         st.rerun()
 
 def page_motto():
-    st.header("📣 1. 오늘의 개념")
+    st.header("📣 1. 오늘의 과목")
     st.info(f"개념: {st.session_state.user_motto}")
-    if st.button("개념 수정하기"):
+    if st.button("과목 수정하기"):
         edit_motto()
     if st.session_state.motto_updated:
-        st.success("새로운 좌우명이 등록되었습니다!")
+        st.success("공부할 새로운 과목이 등록되었습니!")
         st.session_state.motto_updated = False
     st.markdown("---")
 
 def page_todo():
-    st.header("✅ 2. 오늘의 할 일")
+    st.header("✅ 2. 모르는 개념")
     st.write(f"현재 다짐: **{st.session_state.user_motto}**")
-    new_todo = st.text_input("추가할 할 일을 입력하세요", key="todo_input")
+    new_todo = st.text_input("과목에서 알고 싶은 개념, 모르는 개념을 적으세요.", key="todo_input")
     st.button("추가하기", on_click=add_todo)
     if new_todo == "":
-        st.warning("할 일을 입력하고 버튼을 눌러주세요!")
+        st.warning("모르는 개념을 입력하고 버튼을 눌러주세요!")
     
     st.markdown("---")
     for i in range(len(st.session_state.todo_list)):
