@@ -107,7 +107,7 @@ def page_ai_coach():
         st.session_state.messages.append({"role": "assistant", "content": ai_response})
 
 def page_ai_notion():
-    st.header("📖 정리")
+    st.header("3.📖 정리")
 
     # 처음 실행될 때 개수 초기화
     if "concept_count" not in st.session_state:
@@ -140,7 +140,7 @@ def page_ai_notion():
         st.rerun()
        
 def page_report():
-    st.header("📈 3. 학습보고서 ")
+    st.header("📈 4. 학습보고서  ")
     if not st.session_state.todo_list:
         st.write("아직 등록된 할 일이 없습니다.")
     else:
