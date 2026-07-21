@@ -14,12 +14,12 @@ def add_todo():
     task = st.session_state.todo_input
     if task:
         st.session_state.todo_list.append([task, False])
-        st.toast("모르는 개념이 추가되었습니다! ")
+        st.toast("공부할 개념이 추가되었습니다! ")
         st.session_state.todo_input = ""
 
-@st.dialog("개념 수정 ")
+@st.dialog("개념 수정")
 def edit_motto():
-    motto = st.text_input("내가 알고 싶은 개념을 적어주세요.")
+    motto = st.text_input("내가 오늘 공부할 과목을 적어주세요.")
     if st.button("개념 저장"):
         st.session_state.user_motto = motto
         st.session_state.motto_updated = True
@@ -127,9 +127,9 @@ def page_ai_coach():
         st.session_state.messages.append({"role": "assistant", "content": ai_response})
 
 pg = st.navigation([
-    st.Page(page_motto, title="오늘의 다짐", icon="📣"),
+    st.Page(page_motto, title="오늘의 개념", icon="📣"),
     st.Page(page_todo, title="오늘의 할 일", icon="✅"),
-    st.Page(page_report, title="나의 갓생 지수", icon="📈"),
+    st.Page(page_report, title="", icon="📈"),
     st.Page(page_ai_coach, title="AI 코칭", icon="🧐")], position="top")
 
 st.title("🕵️개념 확인 노트🕵️")
