@@ -126,25 +126,32 @@ def page_ai_coach():
                 st.markdown(ai_response)
         st.session_state.messages.append({"role": "assistant", "content": ai_response})
 
+def page_ai_notion():
+    st.header("📖 개념 정리")
+
+    left, right = st.columns([1, 3])
+
+    with left:
+        st.subheader("개념")
+        st.text_input(
+            "개념",
+            placeholder="예) 리스트 컴프리헨션",
+            label_visibility="collapsed"
+        )
+
+    with right:
+        st.subheader("정리 내용")
+        st.text_area(
+            "정리 내용",
+            placeholder="AI로부터 찾은 내용을 정리하세요.",
+            height=300,
+            label_visibility="collapsed"
+        )
 pg = st.navigation([
     st.Page(page_motto, title="오늘의 개념", icon="📣"),
     st.Page(page_todo, title="오늘의 할 일", icon="✅"),
     st.Page(page_report, title="", icon="📈"),
-    st.Page(page_ai_coach, title="AI 코칭", icon="🧐")], position="top")
-
+    st.Page(page_ai_coach, title="AI 코칭", icon="🧐"),
+    st.Page(page_ai_notion, title="📖 개념 정리")], position="top")
 st.title("🕵️개념 확인 노트🕵️")
 pg.run()
-
-def page_unknown_concept():
-    st.header("📚 모르는 개념")
-
-    st.text_input(
-        "개념 이름",
-        placeholder="예) 리스트 컴프리헨션"
-    )
-
-    st.text_area(
-        "AI에게 물어보고 알게 된 개념",
-        placeholder="AI에게 질문한 후 이해한 내용을 작성하세요.",
-        height=250
-    )
