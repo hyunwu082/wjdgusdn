@@ -88,7 +88,7 @@ def page_ai_coach():
             model="gpt-5.4-mini",
             input=prompt
         )
-        st.write(respense.output_text)
+        st.write(response.output_text)
 
 pg = st.navigation([
     st.Page(page_motto, title="오늘의 다짐", icon="📣"),
