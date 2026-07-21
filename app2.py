@@ -14,12 +14,12 @@ def add_todo():
     task = st.session_state.todo_input
     if task:
         st.session_state.todo_list.append([task, False])
-        st.toast("할 일이 추가되었습니다!")
+        st.toast("모르는 개념이 추가되었습니다! ")
         st.session_state.todo_input = ""
 
-@st.dialog("오늘의 다짐 수정")
+@st.dialog("개념 수정 ")
 def edit_motto():
-    motto = st.text_input("나의 한 줄 좌우명을 적어주세요.")
+    motto = st.text_input("내가 알고 싶은 개념을 적어주세요.")
     if st.button("다짐 저장"):
         st.session_state.user_motto = motto
         st.session_state.motto_updated = True
@@ -98,7 +98,7 @@ def page_ai_coach():
             st.markdown(prompt)
 
         response = client.chat.completions.create(
-            model="gpt-4.1-mini",
+            model="gpt-5.4-mini",
             messages=st.session_state.messages
         )
 
