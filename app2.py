@@ -27,7 +27,7 @@ def edit_motto():
 
 def page_motto():
     st.header("📣 1. 오늘의 과목")
-    st.info(f"개념: {st.session_state.user_motto}")
+    st.info(f"과: {st.session_state.user_motto}")
     if st.button("과목 수정하기"):
         edit_motto()
     if st.session_state.motto_updated:
@@ -37,11 +37,11 @@ def page_motto():
 
 def page_todo():
     st.header("✅ 2. 모르는 개념")
-    st.write(f"현재 다짐: **{st.session_state.user_motto}**")
+    st.write(f"과목: **{st.session_state.user_motto}**")
     new_todo = st.text_input("과목에서 알고 싶은 개념, 모르는 개념을 적으세요.", key="todo_input")
     st.button("추가하기", on_click=add_todo)
     if new_todo == "":
-        st.warning("모르는 개념을 입력하고 버튼을 눌러주세요!")
+        st.warning("개념을 입력하고 버튼을 눌러주세요!")
     
     st.markdown("---")
     for i in range(len(st.session_state.todo_list)):
@@ -126,7 +126,7 @@ def page_report():
         st.text_input(
             "오늘 학습한 개념",
             key=f"concept_{i}",
-            placeholder="예) 리스트 컴프리헨션"
+            placeholder="예) 과목1"
         )
 
         st.text_area(
