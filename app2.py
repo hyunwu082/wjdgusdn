@@ -94,7 +94,7 @@ def page_ai_notion():
             st.text_input(
                 "개념",
                 key=f"concept_{i}",
-                placeholder="예) 리스트 컴프리헨션"
+                placeholder="예) 과목1"
             )
 
         with right:
