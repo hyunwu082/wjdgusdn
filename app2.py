@@ -129,27 +129,35 @@ def page_ai_coach():
 def page_ai_notion():
     st.header("📖 개념 정리")
 
-    left, right = st.columns([1, 3])
+    # 처음 실행될 때 개수 초기화
+    if "concept_count" not in st.session_state:
+        st.session_state.concept_count = 1
 
-    with left:
-        st.subheader("개념")
-        st.text_input(
-            "개념",
-            placeholder="예) 리스트 컴프리헨션",
-            label_visibility="collapsed"
-        )
+    # concept_count 개수만큼 입력칸 생성
+    for i in range(st.session_state.concept_count):
+        left, right = st.columns([1, 3])
 
-    with right:
-        st.subheader("정리 내용")
-        st.text_area(
-            "정리 내용",
-            placeholder="AI로부터 찾은 내용을 정리하세요.",
-            height=300,
-            label_visibility="collapsed"
-        )
-        if st.button("➕ 추가"):
-            st.session_state.concept_count += 1
-            st.rerun()
+        with left:
+            st.subheader("개념")
+            st.text_input(
+                "개념",
+                key=f"concept_{i}",
+                placeholder="예) 리스트 컴프리헨션"
+            )
+
+        with right:
+            st.subheader("정리 내용")
+            st.text_area(
+                "정리 내용",
+                key=f"note_{i}",
+                placeholder="AI로부터 찾은 내용을 정리하세요.",
+                height=150
+            )
+
+    # 추가 버튼
+    if st.button("➕ 추가"):
+        st.session_state.concept_count += 1
+        st.rerun()
 
 pg = st.navigation([
     st.Page(page_motto, title="오늘의 개념", icon="📣"),
