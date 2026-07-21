@@ -147,16 +147,10 @@ def page_report():
             "오늘의 한 줄 정리",
             key=f"summary_{i}",
             height=60,
-            placeholder="한 줄로 정리해보세요."
-        )
+            placeholder="한 줄로 정리해보세요." )
 
         st.slider(
-            "😊 이해도",
-            1,
-            5,
-            3,
-            key=f"score_{i}"
-        )
+            "😊 이해도", 1, 5, 3, key=f"score_{i}" )
 
         st.divider()
 
