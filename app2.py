@@ -78,15 +78,17 @@ def page_report():
             st.rerun()
 
 def page_ai_coach():
-    st.header("🤖 AI코칭")
+    st.header("🧐 AI 코치와 대화하기")
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            {"role": "system", "content": "잘하고 있어, 앞으로도 잘 부탁해"}]
+            {"role": "system", "content": "너는 사용자의 할 일 목록과 달성 정도를 분석하여 조언하는 열정적인 코치야. 사용자가 더 멋진 삶을 살 수 있도록 명확한 조언과 응원해줘."}
+        ]
+        
     for message in st.session_state.messages:
         if message["role"] != "system":
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
-           
+                
     question = st.chat_input("질문을 입력하세요")
     if question:
         st.session_state.messages.append({"role": "user", "content": question})
@@ -107,7 +109,8 @@ pg = st.navigation([
     st.Page(page_motto, title="오늘의 다짐", icon="📣"),
     st.Page(page_todo, title="오늘의 할 일", icon="✅"),
     st.Page(page_report, title="나의 갓생 지수", icon="📈"),
-    st.Page(page_ai_coach, title="AI코칭", icon="🕵️")], position="top")
+    st.Page(page_ai_coach, title="AI 코칭", icon="🧐")], position="top")
 
 st.title("🌱 갓생 살기 플래너")
 pg.run()
+
