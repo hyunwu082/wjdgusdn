@@ -62,7 +62,7 @@ def page_ai_coach():
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
 
-    question = st.chat_input("질문을 입력하세요")
+    question = st.chat_input("내가 모르는 개념을 입력하세요.")
     if question:
         st.session_state.messages.append({"role": "user", "content": question})
         with st.chat_message("user"):
@@ -111,25 +111,66 @@ def page_ai_notion():
         st.session_state.concept_count += 1
         st.rerun()
        
+import streamlit as st
+
 def page_report():
-    st.header("📈 4. 학습보고서  ")
-    if not st.session_state.todo_list:
-        st.write("아직 등록된 할 일이 없습니다.")
-    else:
-        total = len(st.session_state.todo_list)
-        count = 0
-        for item in st.session_state.todo_list:
-            if item[1] == True:
-                count += 1
-        progress = (count / total) * 100
-        st.metric("오늘의 달성률", f"{progress:.1f}%")
-        st.progress(progress / 100)
-        if progress == 100:
-            st.balloons()
-            st.success("모든 목표를 달성하셨습니다! 🏆")
-        if st.button("기록 전체 초기화"):
-            st.session_state.todo_list = []
+    st.header("📈 학습 보고서")
+
+    if "report_count" not in st.session_state:
+        st.session_state.report_count = 1
+
+    for i in range(st.session_state.report_count):
+
+        st.markdown(f"### 📈 학습 {i+1}")
+
+        st.text_input(
+            "오늘 학습한 개념",
+            key=f"concept_{i}",
+            placeholder="예) 리스트 컴프리헨션"
+        )
+
+        st.text_area(
+            "어려웠던 이유",
+            key=f"reason_{i}",
+            height=80,
+            placeholder="왜 어려웠는지 작성하세요."
+        )
+
+        st.text_area(
+            "배운 내용",
+            key=f"learn_{i}",
+            height=120,
+            placeholder="AI를 통해 알게 된 내용을 작성하세요."
+        )
+
+        st.text_area(
+            "오늘의 한 줄 정리",
+            key=f"summary_{i}",
+            height=60,
+            placeholder="한 줄로 정리해보세요."
+        )
+
+        st.slider(
+            "😊 이해도",
+            1,
+            5,
+            3,
+            key=f"score_{i}"
+        )
+
+        st.divider()
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        if st.button("➕ 추가"):
+            st.session_state.report_count += 1
             st.rerun()
+
+    with col2:
+        if st.button("✅ 완료"):
+            st.balloons()
+            st.success("🎉 학습 보고서가 완성되었습니다!")
 
 pg = st.navigation([
     st.Page(page_motto, title="오늘의 과목", icon="📣"),
