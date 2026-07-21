@@ -127,7 +127,7 @@ def page_ai_coach():
         st.session_state.messages.append({"role": "assistant", "content": ai_response})
 
 def page_ai_notion():
-    st.header("📖 개념 정리")
+    st.header("📖 정리")
 
     # 처음 실행될 때 개수 초기화
     if "concept_count" not in st.session_state:
